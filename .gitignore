@@ -13,3 +13,32 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Android 项目通用忽略规则
+.gradle/
+.idea/
+build/
+app/build/
+local.properties
+*.iml
+*.log
+*.apk
+*.aab
+
+# 本地开发环境文件
+.DS_Store
+*.swp
+
+# 敏感文件
+keystore.jks
+**/secrets/**
+
+# Gradle 缓存和包装器
+gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar  # 保留 Gradle 包装器
+!gradlew
+!gradlew.bat
+
+# 其他自动生成文件
+/captures/
+/release/
