@@ -1,0 +1,71 @@
+name: Android Auto Build
+
+on:
+  push:
+    branches: [main]  # 推送至 main 分支时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤 1: 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 步骤 2: 设置 JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+
+      # 步骤 3: 安装 Android SDK
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # 步骤 4: 添加 Gradle 执行权限
+      - name: Grant Gradle permission
+        run: chmod +x gradlew
+
+      # 步骤 5: 构建 APK（未签名）
+      - name: Build APK
+        run: ./gradlew assembleRelease
+
+      # 步骤 6: 上传 APK 到 Artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: app/build/outputs/apk/release/app-release.apk
+
+  deploy:
+    needs: build  # 依赖 build 任务
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤 1: 检出 output 分支
+      - name: Checkout output branch
+        uses: actions/checkout@v4
+        with:
+          ref: output
+          path: output-dir  # 检出到子目录避免冲突
+
+      # 步骤 2: 下载 APK 文件
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: app-release.apk
+          path: output-dir/apk
+
+      # 步骤 3: 配置 Git 身份
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      # 步骤 4: 提交并推送 APK 到 output 分支
+      - name: Commit and Push
+        run: |
+          cd output-dir
+          git add apk/app-release.apk
+          git commit -m "ci: Auto-update APK (GitHub Actions)"
+          git push origin output
