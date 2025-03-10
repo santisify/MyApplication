@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="24dp"
+              android:background="@drawable/dialog_background"
+              android:elevation="8dp">
+
+    <!-- 标题 -->
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退出应用"
+            android:textSize="20sp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+    <!-- 消息 -->
+    <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="您确定要退出应用吗？"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+    <!-- 按钮布局 -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+        <!-- 取消按钮 -->
+        <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="取消"
+                android:textColor="#007BFF"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp"/>
+
+        <!-- 确认按钮 -->
+        <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="确认"
+                android:textColor="#FF6B6B"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"/>
+    </LinearLayout>
+</LinearLayout>

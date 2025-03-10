@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0">
+        <title>无网络连接</title>
+        <style>
+            /* 全局样式 */
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                text-align: center;
+            }
+
+            .container {
+                max-width: 400px;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+                color: #e0e0e0;
+            }
+
+            .icon {
+                font-size: 5rem;
+                margin-bottom: 20px;
+                color: #ff6b6b;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            button {
+                padding: 12px 24px;
+                border: none;
+                border-radius: 25px;
+                background-color: #ff6b6b;
+                color: white;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            button:hover {
+                background-color: #ff4757;
+                transform: translateY(-2px);
+            }
+
+            button:active {
+                transform: translateY(0);
+            }
+
+            button.secondary {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            button.secondary:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- 图标 -->
+            <div class="icon">📶</div>
+            <!-- 标题 -->
+            <h1>无网络连接</h1>
+            <!-- 描述 -->
+            <p>当前无网络连接，请检查网络设置或刷新页面。</p>
+            <!-- 按钮 -->
+            <div class="buttons">
+                <button onclick="openSettings()">打开设置</button>
+                <button
+                        class="secondary"
+                        onclick="refreshPage()">刷新页面
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function openSettings() {
+                // 调用 Android 方法跳转到设置页面
+                window.android.openSettings();
+            }
+
+            function refreshPage() {
+                // 调用 Android 方法刷新页面
+                window.android.refreshPage();
+            }
+        </script>
+    </body>
+</html>
