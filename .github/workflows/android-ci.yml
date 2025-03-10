@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/release/app-debug.apk
 
   deploy:
     needs: build  # 依赖 build 任务
@@ -53,7 +53,7 @@ jobs:
       - name: Download APK
         uses: actions/download-artifact@v4
         with:
-          name: app-release.apk
+          name: app-debug.apk
           path: output-dir/apk
 
       # 步骤 3: 配置 Git 身份
